@@ -1,0 +1,26 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <input type="file" id="uploadInput"/>
+        <input type="button" id="uploaderBtn" value="upload"/>
+        <div id="posts">
+            <div class="post">
+                <div class="imageSection">
+                    <img src="anna.jpg" alt="anna from frozen" height="400px" width="60%"/>
+                </div>
+                <div class="commentsSection">
+                    <label>add comment </label><input type="text" id="comment"/><button id="addCommentBtn" type="button" class="btn btn-success">add comment</button>
+                    <div id="commentsDiv"></div>
+                </div>
+            </div>
+        </div>
+       
+        
+        
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+        <script src="main.js"></script>
+    </body>
+</html>
