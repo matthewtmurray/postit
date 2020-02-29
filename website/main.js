@@ -1,27 +1,27 @@
-var btn = document.getElementById("addCommentBtn");
-btn.addEventListener("click", addComment);
-
-var uploaderBtn = document.getElementById("uploaderBtn");
-uploaderBtn.addEventListener("click", uploadImage);
 
 
-var initialise = function initialiseComments(){
-    var commentsDiv = document.getElementById("commentsDiv");
-    var comments = localStorage.getItem('comments').split(',');
-    if(comments){
-        comments.forEach(element => {
-            var commentDiv = document.createElement("div");
-            commentDiv.innerText = element;
-            var commentBtn = document.createElement("button");
-            commentBtn.classList.add('removeComment');
-            commentBtn.classList.add('btn');
-            commentBtn.classList.add('btn-danger');
-            commentBtn.innerText = "remove comment";
-            commentDiv.appendChild(commentBtn);
-            commentsDiv.appendChild(commentDiv);
-            
-        });
-    }
+
+var initialise = function initialise(){
+
+   
+
+    var uploaderBtn = document.getElementById("uploaderBtn");
+    uploaderBtn.addEventListener("click", uploadImage);
+    // var commentsDiv = document.getElementById("commentsDiv");
+    // var comments = localStorage.getItem('comments').split(',');
+    // if(comments){
+    //     comments.forEach(element => {
+    //         var commentDiv = document.createElement("div");
+    //         commentDiv.innerText = element;
+    //         var commentBtn = document.createElement("button");
+    //         commentBtn.classList.add('removeComment');
+    //         commentBtn.classList.add('btn');
+    //         commentBtn.classList.add('btn-danger');
+    //         commentBtn.innerText = "remove comment";
+    //         commentDiv.appendChild(commentBtn);
+    //         commentsDiv.appendChild(commentDiv);
+    //     });
+    //}
 }
 
 initialise();
@@ -78,10 +78,7 @@ var imagePath = document.getElementById("uploadInput");
 
 
 function imageIsLoaded(e) {
-    //localStorage.setItem("image1", e.target.result);
-    
-    
-    
+
     $("#posts").append("<div class='post'>" +
         "<div class='imageSection'>" +
             "<img src=" + e.target.result + " alt='anna from frozen' height='400px' width='60%'/>" +
@@ -92,7 +89,4 @@ function imageIsLoaded(e) {
         "</div>" +
     "</div>");
 
-
-    var posts = document.getElementById("posts");
-    posts.appendChild(post);
 };
