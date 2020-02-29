@@ -19,6 +19,7 @@ var initialise = function initialiseComments(){
             commentBtn.innerText = "remove comment";
             commentDiv.appendChild(commentBtn);
             commentsDiv.appendChild(commentDiv);
+            
         });
     }
 }
