@@ -3,8 +3,6 @@
 
 var initialise = function initialise(){
 
-   
-
     var uploaderBtn = document.getElementById("uploaderBtn");
     uploaderBtn.addEventListener("click", uploadImage);
     // var commentsDiv = document.getElementById("commentsDiv");
@@ -65,6 +63,12 @@ function addComment(){
     }
 }
 
+function addComments(e){
+    var commentsDiv = $(e.target).siblings('.commentsDiv');
+    var comment = $(e.target).siblings(".comment");
+    commentsDiv.prepend("<div>" + $(e.target).siblings('.comment').val()+ " <span class='dateTimeStamp'>" + moment().format('MMMM Do YYYY, h:mm:ss a') +"</span></div>")
+}
+
 function uploadImage(){
 var imagePath = document.getElementById("uploadInput");
 
@@ -79,14 +83,41 @@ var imagePath = document.getElementById("uploadInput");
 
 function imageIsLoaded(e) {
 
-    $("#posts").append("<div class='post'>" +
+    $("#posts").prepend("<div class='post col'>" +
         "<div class='imageSection'>" +
             "<img src=" + e.target.result + " alt='anna from frozen' height='400px' width='60%'/>" +
         "</div>" +
         "<div class='commentsSection'>"+
-            "<label>add comment </label><input type='text' class='comment'/><button class='addCommentBtn' type='button' class='btn btn-success'>add comment</button>" +
+            "<label>add comment </label><input type='text' class='comment'/><button class='addCommentBtn btn btn-success' type='button'>add comment</button>" +
             "<div class='commentsDiv'></div>" +
         "</div>" +
     "</div>");
 
+    var comment = $('.addCommentBtn');
+    
+    comment.click(addComments);
+    addPostToDb(e.target.result);
 };
+
+function addPostToDb(image){
+    
+    var body = {
+        username: "Math",
+        image: image,
+        imageTitle: "Ashtonbury",
+        imageDescritpion:"family photo on the bowling green",
+        comments:["it was a great day", "lovely weather", "very hot", "i had to drive!!!"],
+        likes:42,
+        dislikes:1
+    };
+    $.ajax({
+      type:"POST",
+      url:"http://localhost:9000",
+      data: JSON.stringify(body),
+      contentType: "application/json; charset=utf-8;",
+      dataType: "json",
+      success: function(data){alert(data)},
+      failure: function(error){alert(error)}
+    });
+}
+

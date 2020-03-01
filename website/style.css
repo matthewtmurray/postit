@@ -6,3 +6,16 @@
     margin: 5px;
 }
 
+.post{
+    min-width: 600px;
+}
+
+.commentsSection{
+    margin:20px;
+}
+
+.dateTimeStamp{
+    font-size: small;
+    font-style: italic;
+}
+
