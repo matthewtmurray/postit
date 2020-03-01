@@ -66,7 +66,8 @@ function addComment(){
 function addComments(e){
     var commentsDiv = $(e.target).siblings('.commentsDiv');
     var comment = $(e.target).siblings(".comment");
-    commentsDiv.prepend("<div>" + $(e.target).siblings('.comment').val()+ " <span class='dateTimeStamp'>" + moment().format('MMMM Do YYYY, h:mm:ss a') +"</span></div>")
+    commentsDiv.prepend("<div>" + $(e.target).siblings('.comment').val()+ " <span class='dateTimeStamp'>" + moment().format('MMMM Do YYYY, h:mm:ss a') +"</span></div>");
+    var postDivId = $(commentsDiv).closest("[data-dbId]").data('dbid');
 }
 
 function uploadImage(){
@@ -104,20 +105,26 @@ function addPostToDb(image){
     var body = {
         username: "Math",
         image: image,
-        imageTitle: "Ashtonbury",
-        imageDescritpion:"family photo on the bowling green",
-        comments:["it was a great day", "lovely weather", "very hot", "i had to drive!!!"],
-        likes:42,
-        dislikes:1
+        imageTitle: "",
+        imageDescritpion:"",
+        comments:[],
+        likes:0,
+        dislikes:0
     };
     $.ajax({
       type:"POST",
       url:"http://localhost:9000",
       data: JSON.stringify(body),
-      contentType: "application/json; charset=utf-8;",
+      contentType: "application/json",
       dataType: "json",
-      success: function(data){alert(data)},
+      success: function(post){
+          updatePostDiv(post);
+        },
       failure: function(error){alert(error)}
     });
+}
+
+function updatePostDiv(post){
+    $("#posts").children().first().attr("data-dbId",post._id);
 }
 
