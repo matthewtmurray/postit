@@ -68,6 +68,25 @@ function addComments(e){
     var comment = $(e.target).siblings(".comment");
     commentsDiv.prepend("<div>" + $(e.target).siblings('.comment').val()+ " <span class='dateTimeStamp'>" + moment().format('MMMM Do YYYY, h:mm:ss a') +"</span></div>");
     var postDivId = $(commentsDiv).closest("[data-dbId]").data('dbid');
+    addCommentToDb($(e.target).siblings('.comment').val(),postDivId);
+}
+
+function addCommentToDb(comment, postId){
+    var body = {
+        comment: comment,
+        postId: postId
+    };
+    $.ajax({
+      type:"POST",
+      url:"http://localhost:9000/comment",
+      data: JSON.stringify(body),
+      contentType: "application/json",
+      dataType: "json",
+      success: function(post){
+          //todo
+        },
+      failure: function(error){console.log(error)}
+    });
 }
 
 function uploadImage(){
